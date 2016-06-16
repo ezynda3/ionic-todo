@@ -34,12 +34,18 @@ app.controller('TodoCtrl', ['$scope', function($scope) {
 
     $scope.addTask = function() {
         if ($scope.newTask) {
-            $scope.tasks.push($scope.newTask);
+            $scope.tasks.push({name: $scope.newTask});
             $scope.newTask = null;
             window.localStorage['tasks'] = angular.toJson($scope.tasks)
             return;
         }
         $scope.newTask = null;
+        return;
+    }
+
+    $scope.deleteTask = function(index) {
+        $scope.tasks.splice(index, 1);
+        window.localStorage['tasks'] = angular.toJson($scope.tasks)
         return;
     }
 }])

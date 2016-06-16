@@ -44,7 +44,16 @@
         </div>
         <ion-list>
             <ion-item ng-repeat="task in tasks">
-                <h3>{{ task }}</h3>
+                <div class="row">
+                    <div class="col col-85">
+                        <h3>{{ task.name }}</h3>
+                    </div>
+                    <div class="col col-20">
+                        <button class="button button-small button-assertive" ng-click="deleteTask($index)">
+                            <i class="icon ion-trash-a"></i>
+                        </button>
+                    </div>
+                </div>
             </ion-item>
         </ion-list>
       </ion-content>
