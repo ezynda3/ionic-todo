@@ -24,12 +24,19 @@ var app = angular.module('todo', ['ionic'])
 })
 
 app.controller('TodoCtrl', ['$scope', function($scope) {
-    $scope.tasks = [];
+    var tasksJSON = window.localStorage['tasks'];
+    
+    if (tasksJSON) {
+        $scope.tasks = angular.fromJson(tasksJSON);    
+    } else {
+        $scope.tasks = [];
+    }
 
     $scope.addTask = function() {
         if ($scope.newTask) {
             $scope.tasks.push($scope.newTask);
             $scope.newTask = null;
+            window.localStorage['tasks'] = angular.toJson($scope.tasks)
             return;
         }
         $scope.newTask = null;
